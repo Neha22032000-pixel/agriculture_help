@@ -1,11 +1,15 @@
-def analyze_image(image_path):
-    """
-    Placeholder for Gemma multimodal analysis
-    """
-    print(f"Analyzing image {image_path}...")
-    
-    # MOCK OUTPUT
+def parse_transcription(text):
+    text = text.lower()
+
+    def has(words):
+        return any(w in text for w in words)
+
     return {
-        "likely_category": "fungal",
-        "confidence": 0.65
+        "itching": has(["itch", "khujli"]),
+        "pain": has(["pain", "dard"]),
+        "spread": has(["spread", "fail", "bad raha"]),
+        "duration": extract_days(text),
+        "pus": has(["pus", "peep"]),
+        "worsening": has(["worse", "zyada", "bad raha"]),
+        "fever": has(["fever", "bukhar"])
     }
